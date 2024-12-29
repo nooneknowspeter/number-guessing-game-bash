@@ -4,6 +4,8 @@ PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 
 echo -e "\n-- Number Guessing Game --\n"
 
+sleep 1
+
 # ask user to input username
 echo -e "\nEnter your username:"
 
