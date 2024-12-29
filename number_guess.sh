@@ -53,11 +53,25 @@ until [[ $GUESS == $SECRET_NUMBER ]]; do
 
       read GUESS
 
+      ((NUMBER_OF_GUESSES++))
+
     elif [[ $GUESS > $SECRET_NUMBER ]]; then
 
       echo -e "\nIt's higher than that, guess again:"
 
       read GUESS
+
+      ((NUMBER_OF_GUESSES++))
     fi
   fi
 done
+
+((NUMBER_OF_GUESSES++))
+
+echo -e "\nYou guessed it in $NUMBER_OF_GUESSES tries. The secret number was $SECRET_NUMBER. Nice job!"
+
+# query user id from database
+QUERY_USER_ID=$($PSQL "SELECT user_id FROM users WHERE username = '$USERNAME'")
+
+# input game data into database
+INPUT_GAME_INTO_DB=$($PSQL "INSERT INTO games (user_id, secret_number, number_of_guesses) VALUES ($QUERY_USER_ID, $SECRET_NUMBER, $NUMBER_OF_GUESSES)")
