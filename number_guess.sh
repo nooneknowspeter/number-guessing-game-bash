@@ -64,11 +64,12 @@ until [[ $GUESS == $SECRET_NUMBER ]]; do
       ((NUMBER_OF_GUESSES++))
     fi
   fi
+
 done
 
 ((NUMBER_OF_GUESSES++))
 
-echo -e "\nYou guessed it in $NUMBER_OF_GUESSES tries. The secret number was $SECRET_NUMBER. Nice job!"
+echo "You guessed it in $NUMBER_OF_GUESSES tries. The secret number was $SECRET_NUMBER. Nice job!"
 
 # query user id from database
 QUERY_USER_ID=$($PSQL "SELECT user_id FROM users WHERE username = '$USERNAME'")
